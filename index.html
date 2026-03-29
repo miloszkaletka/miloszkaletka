@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Miłosz Kaletka | Cloud & DevOps</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Inter, sans-serif;
+            background: #0b1220;
+            color: white;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        header {
+            padding: 60px 0 30px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 42px;
+        }
+
+        .role {
+            color: #94a3b8;
+            margin-top: 10px;
+        }
+
+        .section {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        .chips span {
+            display: inline-block;
+            padding: 6px 10px;
+            margin: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 999px;
+            font-size: 13px;
+        }
+
+        a {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+    <!-- HEADER -->
+    <header>
+        <h1>Miłosz Kaletka</h1>
+        <p class="role">Cloud / DevOps Engineer (Junior) • Senior IT Support Engineer</p>
+
+        <p>
+            I build cloud projects in Microsoft Azure, automate deployments and learn DevOps practices.
+        </p>
+
+        <div class="chips">
+            <span>Azure</span>
+            <span>Python</span>
+            <span>CI/CD</span>
+            <span>GitHub Actions</span>
+            <span>Linux</span>
+        </div>
+    </header>
+
+    <!-- ABOUT -->
+    <section class="section">
+        <h2>About Me</h2>
+        <p>
+            I am an IT professional transitioning into Cloud and DevOps.
+            I focus on building real-world projects using Azure, automation and infrastructure as code.
+        </p>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section">
+        <h2>Projects</h2>
+
+        <p>
+            <strong>Cloud Resume Challenge</strong><br>
+            Static website hosted in Azure with serverless backend (Azure Functions + Table Storage).<br>
+            <a href="https://miloszcloudresume01.z36.web.core.windows.net/" target="_blank">Live project</a>
+        </p>
+
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section">
+        <h2>Contact</h2>
+
+        <p>Email: <a href="mailto:milosz.kaletka@gmail.com">milosz.kaletka@gmail.com</a></p>
+        <p>GitHub: <a href="https://github.com/miloszkaletka" target="_blank">github.com/miloszkaletka</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/mi%C5%82osz-kaletka-a09b00267/" target="_blank">LinkedIn</a></p>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© <span id="year"></span> Miłosz Kaletka</p>
+        <p>Visitor count: <span id="visitor-count">Loading...</span></p>
+    </footer>
+
+</div>
+
+<script>
+    // rok
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // API counter (możesz zmienić na /api/counter przy Static Web Apps)
+    const apiUrl = "https://fn-cloud-resume-counter-cacwd0eaf8hrfvcr.westeurope-01.azurewebsites.net/api/counter";
+
+    async function loadVisitorCount() {
+        try {
+            const res = await fetch(apiUrl, { cache: "no-store" });
+            if (!res.ok) throw new Error("API error");
+
+            const data = await res.json();
+            document.getElementById("visitor-count").textContent = data.count;
+        } catch {
+            document.getElementById("visitor-count").textContent = "N/A";
+        }
+    }
+
+    loadVisitorCount();
+</script>
+
+</body>
+</html>
